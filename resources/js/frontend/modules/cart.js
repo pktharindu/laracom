@@ -7,16 +7,18 @@ export const cart = {
         addToCart({
             commit
         }, product) {
-            commit('ADD_TO_CART', product.id)
+            commit('ADD_TO_CART', product)
         }
     },
 
     mutations: {
-        ADD_TO_CART(state, id) {
-            const record = state.cart.find(cart => cart.id === id)
+        ADD_TO_CART(state, product) {
+            const record = state.cart.find(cart => cart.id === product.id)
             if (!record) {
                 state.cart.push({
-                    id,
+                    id: product.id,
+                    name: product.name,
+                    price: product.price,
                     quantity: 1
                 })
             } else {
@@ -31,10 +33,14 @@ export const cart = {
         cartProducts: state => {
             return state.cart.map(({
                 id,
+                name,
+                price,
                 quantity
             }) => {
                 return {
                     id,
+                    name,
+                    price,
                     quantity
                 }
             })

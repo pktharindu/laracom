@@ -47,7 +47,6 @@
         </div>
       </div>
     </section>
-    {{ products }}
   </div>
 </template>
 

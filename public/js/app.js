@@ -1982,7 +1982,6 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
 /* harmony default export */ __webpack_exports__["default"] = ({
   computed: {
     products: function products() {
@@ -39470,8 +39469,7 @@ var render = function() {
           ])
         ])
       ])
-    ]),
-    _vm._v("\n  " + _vm._s(_vm.products) + "\n")
+    ])
   ])
 }
 var staticRenderFns = [
@@ -55939,18 +55937,20 @@ var cart = {
   actions: {
     addToCart: function addToCart(_ref, product) {
       var commit = _ref.commit;
-      commit('ADD_TO_CART', product.id);
+      commit('ADD_TO_CART', product);
     }
   },
   mutations: {
-    ADD_TO_CART: function ADD_TO_CART(state, id) {
+    ADD_TO_CART: function ADD_TO_CART(state, product) {
       var record = state.cart.find(function (cart) {
-        return cart.id === id;
+        return cart.id === product.id;
       });
 
       if (!record) {
         state.cart.push({
-          id: id,
+          id: product.id,
+          name: product.name,
+          price: product.price,
           quantity: 1
         });
       } else {
@@ -55965,9 +55965,13 @@ var cart = {
     cartProducts: function cartProducts(state) {
       return state.cart.map(function (_ref2) {
         var id = _ref2.id,
+            name = _ref2.name,
+            price = _ref2.price,
             quantity = _ref2.quantity;
         return {
           id: id,
+          name: name,
+          price: price,
           quantity: quantity
         };
       });
