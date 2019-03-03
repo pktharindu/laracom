@@ -8,8 +8,8 @@ require('./bootstrap')
 
 import Vue from 'vue'
 
-import router from './routes.js'
-import store from './store.js'
+import router from './frontend/routes.js'
+import store from './frontend/store.js'
 
 /**
  * Next, we will create a fresh Vue application instance and attach it to

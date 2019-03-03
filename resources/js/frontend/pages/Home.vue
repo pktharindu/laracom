@@ -16,7 +16,11 @@
         </p>
       </div>
     </section>
-    <div class="album py-5 bg-light">
+
+    <section
+      class="py-5 bg-light"
+      v-if="productsLoadStatus == 2"
+    >
       <div class="container">
 
         <div class="row">
@@ -24,11 +28,42 @@
             class="col-md-4"
             v-for="product in products.data"
           >
-            <ProductItem :product="product" />
+            <ProductItem
+              :product="product"
+              :key="product.id"
+            />
           </div>
         </div>
+        <div class="d-flex justify-content-center">
+
+          <ul class="pagination">
+            <template v-if="page != 1">
+              <li class="page-item">
+                <router-link
+                  :to="{ name: 'home', query: {page: page - 1} }"
+                  class="page-link"
+                  rel="prev"
+                >
+                  Previous
+                </router-link>
+              </li>
+            </template>
+            <template v-if="page < products.meta.last_page">
+              <li class="page-item">
+                <router-link
+                  :to="{ name: 'home', query: {page: page + 1} }"
+                  class="page-link"
+                  rel="next"
+                >
+                  Next
+                </router-link>
+              </li>
+            </template>
+          </ul>
+
+        </div>
       </div>
-    </div>
+    </section>
   </div>
 </template>
 
@@ -40,13 +75,15 @@ export default {
     ProductItem
   },
   created() {
-    this.$store.dispatch("loadProducts");
+    this.$store.dispatch("loadProducts", this.page);
   },
   computed: {
+    page() {
+      return parseInt(this.$route.query.page) || 1;
+    },
     productsLoadStatus() {
       return this.$store.getters.getProductsLoadStatus;
     },
-
     products() {
       return this.$store.getters.getProducts;
     }

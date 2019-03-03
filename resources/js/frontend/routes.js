@@ -17,19 +17,14 @@ import VueRouter from 'vue-router'
 Vue.use(VueRouter)
 
 export default new VueRouter({
+    mode: 'history',
     routes: [{
         path: '/',
-        name: 'layout',
         component: Vue.component('Layout', require('./pages/Layout.vue').default),
         children: [{
                 path: '',
                 name: 'home',
                 component: Vue.component('Home', require('./pages/Home.vue').default)
-            },
-            {
-                path: 'products',
-                name: 'products',
-                component: Vue.component('Products', require('./pages/Products.vue').default)
             },
             {
                 path: 'products/:id',

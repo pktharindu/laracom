@@ -11,10 +11,10 @@ export const products = {
     actions: {
         loadProducts({
             commit
-        }) {
+        }, page) {
             commit('setProductsLoadStatus', 1)
 
-            ProductAPI.getProducts()
+            ProductAPI.getProducts(page)
                 .then(function (response) {
                     commit('setProducts', response.data)
                     commit('setProductsLoadStatus', 2)

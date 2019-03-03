@@ -6,8 +6,8 @@ export default {
     /*
       GET     /api/products
     */
-    getProducts: function () {
-        return axios.get(LARACOM_CONFIG.API_URL + '/products');
+    getProducts: function (page) {
+        return axios.get(LARACOM_CONFIG.API_URL + '/products?page=' + page);
     },
 
     /*
