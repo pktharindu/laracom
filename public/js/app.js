@@ -1903,6 +1903,12 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({});
 
 /***/ }),
@@ -39061,9 +39067,7 @@ var render = function() {
                 ]),
                 _vm._v(" "),
                 _c("h5", [
-                  _c("strong", [
-                    _vm._v("Rs. " + _vm._s(_vm.product.price / 100))
-                  ])
+                  _c("strong", [_vm._v("Rs. " + _vm._s(_vm.product.price))])
                 ])
               ]
             ),
@@ -39220,10 +39224,12 @@ var render = function() {
                 )
               ],
               1
-            )
+            ),
+            _vm._v(" "),
+            _vm._m(1)
           ]),
           _vm._v(" "),
-          _vm._m(1)
+          _vm._m(2)
         ]
       )
     ],
@@ -39250,6 +39256,16 @@ var staticRenderFns = [
       },
       [_c("span", { staticClass: "navbar-toggler-icon" })]
     )
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("li", { staticClass: "nav-item" }, [
+      _c("a", { staticClass: "nav-link", attrs: { href: "/admin" } }, [
+        _vm._v("Admin Panel")
+      ])
+    ])
   },
   function() {
     var _vm = this
@@ -39551,9 +39567,7 @@ var render = function() {
                             [
                               _c("h5", [
                                 _c("strong", [
-                                  _vm._v(
-                                    "Rs. " + _vm._s(_vm.product.price / 100)
-                                  )
+                                  _vm._v("Rs. " + _vm._s(_vm.product.price))
                                 ])
                               ]),
                               _vm._v(" "),
@@ -55731,38 +55745,38 @@ var products = {
   actions: {
     loadProducts: function loadProducts(_ref, page) {
       var commit = _ref.commit;
-      commit('setProductsLoadStatus', 1);
+      commit('SET_PRODUCTS_LOAD_STATUS', 1);
       _api_product_js__WEBPACK_IMPORTED_MODULE_0__["default"].getProducts(page).then(function (response) {
-        commit('setProducts', response.data);
-        commit('setProductsLoadStatus', 2);
+        commit('SET_PRODUCTS', response.data);
+        commit('SET_PRODUCTS_LOAD_STATUS', 2);
       }).catch(function () {
-        commit('setProducts', []);
-        commit('setProductsLoadStatus', 3);
+        commit('SET_PRODUCTS', []);
+        commit('SET_PRODUCTS_LOAD_STATUS', 3);
       });
     },
     loadProduct: function loadProduct(_ref2, data) {
       var commit = _ref2.commit;
-      commit('setProductLoadStatus', 1);
+      commit('SET_PRODUCT_LOAD_STATUS', 1);
       _api_product_js__WEBPACK_IMPORTED_MODULE_0__["default"].getProduct(data.id).then(function (response) {
-        commit('setProduct', response.data);
-        commit('setProductLoadStatus', 2);
+        commit('SET_PRODUCT', response.data);
+        commit('SET_PRODUCT_LOAD_STATUS', 2);
       }).catch(function () {
-        commit('setProduct', {});
-        commit('setProductLoadStatus', 3);
+        commit('SET_PRODUCT', {});
+        commit('SET_PRODUCT_LOAD_STATUS', 3);
       });
     }
   },
   mutations: {
-    setProductsLoadStatus: function setProductsLoadStatus(state, status) {
+    SET_PRODUCTS_LOAD_STATUS: function SET_PRODUCTS_LOAD_STATUS(state, status) {
       state.productsLoadStatus = status;
     },
-    setProducts: function setProducts(state, products) {
+    SET_PRODUCTS: function SET_PRODUCTS(state, products) {
       state.products = products;
     },
-    setProductLoadStatus: function setProductLoadStatus(state, status) {
+    SET_PRODUCT_LOAD_STATUS: function SET_PRODUCT_LOAD_STATUS(state, status) {
       state.productLoadStatus = status;
     },
-    setProduct: function setProduct(state, product) {
+    SET_PRODUCT: function SET_PRODUCT(state, product) {
       state.product = product;
     }
   },
@@ -56021,7 +56035,8 @@ __webpack_require__.r(__webpack_exports__);
 
 vue__WEBPACK_IMPORTED_MODULE_0___default.a.use(vue_router__WEBPACK_IMPORTED_MODULE_1__["default"]);
 /* harmony default export */ __webpack_exports__["default"] = (new vue_router__WEBPACK_IMPORTED_MODULE_1__["default"]({
-  mode: 'history',
+  //mode: 'history',
+  linkActiveClass: 'active',
   routes: [{
     path: '/',
     component: vue__WEBPACK_IMPORTED_MODULE_0___default.a.component('Layout', __webpack_require__(/*! ./pages/Layout.vue */ "./resources/js/frontend/pages/Layout.vue").default),

@@ -17,7 +17,8 @@ import VueRouter from 'vue-router'
 Vue.use(VueRouter)
 
 export default new VueRouter({
-    mode: 'history',
+    //mode: 'history',
+    linkActiveClass: 'active',
     routes: [{
         path: '/',
         component: Vue.component('Layout', require('./pages/Layout.vue').default),

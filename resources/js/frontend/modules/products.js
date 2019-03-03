@@ -12,51 +12,51 @@ export const products = {
         loadProducts({
             commit
         }, page) {
-            commit('setProductsLoadStatus', 1)
+            commit('SET_PRODUCTS_LOAD_STATUS', 1)
 
             ProductAPI.getProducts(page)
                 .then(function (response) {
-                    commit('setProducts', response.data)
-                    commit('setProductsLoadStatus', 2)
+                    commit('SET_PRODUCTS', response.data)
+                    commit('SET_PRODUCTS_LOAD_STATUS', 2)
                 })
                 .catch(function () {
-                    commit('setProducts', [])
-                    commit('setProductsLoadStatus', 3)
+                    commit('SET_PRODUCTS', [])
+                    commit('SET_PRODUCTS_LOAD_STATUS', 3)
                 })
         },
 
         loadProduct({
             commit
         }, data) {
-            commit('setProductLoadStatus', 1)
+            commit('SET_PRODUCT_LOAD_STATUS', 1)
 
             ProductAPI.getProduct(data.id)
                 .then(function (response) {
-                    commit('setProduct', response.data)
-                    commit('setProductLoadStatus', 2)
+                    commit('SET_PRODUCT', response.data)
+                    commit('SET_PRODUCT_LOAD_STATUS', 2)
                 })
                 .catch(function () {
-                    commit('setProduct', {})
-                    commit('setProductLoadStatus', 3)
+                    commit('SET_PRODUCT', {})
+                    commit('SET_PRODUCT_LOAD_STATUS', 3)
                 })
 
         }
     },
 
     mutations: {
-        setProductsLoadStatus(state, status) {
+        SET_PRODUCTS_LOAD_STATUS(state, status) {
             state.productsLoadStatus = status
         },
 
-        setProducts(state, products) {
+        SET_PRODUCTS(state, products) {
             state.products = products
         },
 
-        setProductLoadStatus(state, status) {
+        SET_PRODUCT_LOAD_STATUS(state, status) {
             state.productLoadStatus = status
         },
 
-        setProduct(state, product) {
+        SET_PRODUCT(state, product) {
             state.product = product
         }
     },

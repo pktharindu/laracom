@@ -43,7 +43,7 @@
 
                       <div class="d-flex justify-content-between align-items-center">
                         <h5>
-                          <strong>Rs. {{ product.price/100 }}</strong>
+                          <strong>Rs. {{ product.price }}</strong>
                         </h5>
                         <button
                           type="button"

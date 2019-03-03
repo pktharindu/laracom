@@ -17,7 +17,7 @@
         <div class="d-flex justify-content-between align-items-center">
           <span class="text-muted">{{ Math.floor(Math.random() * (15 - 1 + 1)) + 1 }} Reviews</span>
           <h5>
-            <strong>Rs. {{ product.price/100 }}</strong>
+            <strong>Rs. {{ product.price }}</strong>
           </h5>
         </div>
         <hr>

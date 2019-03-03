@@ -12,5 +12,7 @@
 */
 
 Route::get('/', function () {
-    return 'test';
+    return redirect()->route('admin.products.index');
 });
+
+Route::resource('products', 'ProductController');
