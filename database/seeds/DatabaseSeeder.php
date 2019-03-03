@@ -11,6 +11,12 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
-        // $this->call(UsersTableSeeder::class);
+        // Cleanup
+        $publicDisk = Storage::disk('public');
+        foreach ($publicDisk->directories() as $directory) {
+            $publicDisk->deleteDirectory($directory);
+        }
+        
+        $this->call(ProductsTableSeeder::class);
     }
 }
