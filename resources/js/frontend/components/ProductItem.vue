@@ -26,19 +26,8 @@
             <button
               type="button"
               class="btn btn-sm btn-primary"
-              @click.prevent=""
+              @click.prevent="addToCart(product)"
             >Add to cart</button>
-          </div>
-          <div class="col-auto">
-            <select
-              class="form-control form-control-sm"
-              @click.prevent=""
-            >
-              <option
-                v-for="n in 10"
-                :value="n"
-              >{{ n }}</option>
-            </select>
           </div>
         </div>
       </div>
@@ -52,6 +41,11 @@ export default {
     product: {
       type: Object,
       required: true
+    }
+  },
+  methods: {
+    addToCart(product) {
+      this.$store.dispatch("addToCart", this.product);
     }
   }
 };

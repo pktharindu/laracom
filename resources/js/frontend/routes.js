@@ -18,7 +18,7 @@ Vue.use(VueRouter)
 
 export default new VueRouter({
     //mode: 'history',
-    linkActiveClass: 'active',
+    linkExactActiveClass: 'active',
     routes: [{
         path: '/',
         component: Vue.component('Layout', require('./pages/Layout.vue').default),
@@ -31,6 +31,11 @@ export default new VueRouter({
                 path: 'products/:id',
                 name: 'product',
                 component: Vue.component('Product', require('./pages/Product.vue').default)
+            },
+            {
+                path: 'cart',
+                name: 'cart',
+                component: Vue.component('Cart', require('./pages/Cart.vue').default)
             }
         ]
     }]

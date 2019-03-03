@@ -9,8 +9,13 @@ import {
     products
 } from './modules/products.js'
 
+import {
+    cart
+} from './modules/cart.js'
+
 export default new Vuex.Store({
     modules: {
-        products
+        products,
+        cart
     }
 })

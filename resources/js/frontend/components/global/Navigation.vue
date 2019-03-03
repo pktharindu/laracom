@@ -40,10 +40,15 @@
       </ul>
       <ul class="navbar-nav">
         <li class="nav-item">
-          <a
+          <router-link
+            :to="{ name: 'cart' }"
             class="nav-link"
-            href="#"
-          >Cart</a>
+          >
+            Cart <span
+              class="badge badge-light"
+              v-if="itemsInCart"
+            >{{ itemsInCart }}</span>
+          </router-link>
         </li>
       </ul>
     </div>
@@ -51,7 +56,14 @@
 </template>
 
 <script>
-export default {};
+export default {
+  computed: {
+    itemsInCart() {
+      let cart = this.$store.getters.cartProducts;
+      return cart.reduce((accum, item) => accum + item.quantity, 0);
+    }
+  }
+};
 </script>
 
 <style scoped>

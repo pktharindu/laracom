@@ -27,28 +27,20 @@
                           <span class="text-muted">{{ Math.floor(Math.random() * (15 - 1 + 1)) + 1 }} Reviews</span>
                         </div>
                         <div class="col-auto">
-                          <select
-                            class="form-control form-control-sm"
-                            @click.prevent=""
-                          >
-                            <option
-                              v-for="n in 10"
-                              :value="n"
-                            >{{ n }}</option>
-                          </select>
+                          <h5>
+                            <strong>Rs. {{ product.price }}</strong>
+                          </h5>
                         </div>
                       </div>
 
                       <hr>
 
                       <div class="d-flex justify-content-between align-items-center">
-                        <h5>
-                          <strong>Rs. {{ product.price }}</strong>
-                        </h5>
+                        <span></span>
                         <button
                           type="button"
                           class="btn btn-primary"
-                          @click.prevent=""
+                          @click.prevent="addToCart(product)"
                         >Add to cart</button>
                       </div>
                     </div>
@@ -77,6 +69,11 @@ export default {
 
     product() {
       return this.$store.getters.getProduct.data;
+    }
+  },
+  methods: {
+    addToCart(product) {
+      this.$store.dispatch("addToCart", this.product);
     }
   }
 };
