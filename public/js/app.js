@@ -1986,6 +1986,8 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   computed: {
     products: function products() {
@@ -39443,7 +39445,7 @@ var render = function() {
                               _c(
                                 "button",
                                 {
-                                  attrs: { "data-id": product.id },
+                                  staticClass: "btn btn-sm btn-danger",
                                   on: {
                                     click: function($event) {
                                       return _vm.removeFromCart(product)
@@ -39463,7 +39465,9 @@ var render = function() {
                           _vm._v(" "),
                           _c("td", [
                             _c("b", [_vm._v("Rs. " + _vm._s(_vm.total))])
-                          ])
+                          ]),
+                          _vm._v(" "),
+                          _c("td")
                         ])
                       ],
                       2
@@ -39507,7 +39511,9 @@ var staticRenderFns = [
         _vm._v(" "),
         _c("td", [_vm._v("Price")]),
         _vm._v(" "),
-        _c("td", [_vm._v("Quantity")])
+        _c("td", [_vm._v("Quantity")]),
+        _vm._v(" "),
+        _c("td")
       ])
     ])
   },

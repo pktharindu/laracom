@@ -31,7 +31,7 @@ export const cart = {
             }
         },
         REMOVE_FROM_CART(state, product) {
-            const index = state.cart.findIndex(cart => cart.id === product.id);
+            const index = state.cart.findIndex(cart => cart.id === product.id)
             if (index >= 0) {
                 state.cart.splice(index, 1)
             }

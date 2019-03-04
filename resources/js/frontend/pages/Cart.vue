@@ -21,6 +21,7 @@
                       <td>Name</td>
                       <td>Price</td>
                       <td>Quantity</td>
+                      <td></td>
                     </tr>
                   </thead>
                   <tbody>
@@ -29,14 +30,15 @@
                       <td>Rs. {{ product.price }}</td>
                       <td>{{ product.quantity }}</td>
                       <td><button
+                          class='btn btn-sm btn-danger'
                           @click="removeFromCart(product)"
-                          :data-id="product.id"
                         >X</button></td>
                     </tr>
                     <tr>
                       <td><b>Total:</b></td>
                       <td></td>
                       <td><b>Rs. {{ total }}</b></td>
+                      <td></td>
                     </tr>
                   </tbody>
                 </table>
