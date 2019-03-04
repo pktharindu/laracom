@@ -1982,6 +1982,10 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   computed: {
     products: function products() {
@@ -1991,6 +1995,11 @@ __webpack_require__.r(__webpack_exports__);
       return this.products.reduce(function (total, p) {
         return total + p.price * p.quantity;
       }, 0);
+    }
+  },
+  methods: {
+    removeFromCart: function removeFromCart(product) {
+      this.$store.dispatch("removeFromCart", product);
     }
   }
 });
@@ -39428,7 +39437,22 @@ var render = function() {
                             _vm._v(" "),
                             _c("td", [_vm._v("Rs. " + _vm._s(product.price))]),
                             _vm._v(" "),
-                            _c("td", [_vm._v(_vm._s(product.quantity))])
+                            _c("td", [_vm._v(_vm._s(product.quantity))]),
+                            _vm._v(" "),
+                            _c("td", [
+                              _c(
+                                "button",
+                                {
+                                  attrs: { "data-id": product.id },
+                                  on: {
+                                    click: function($event) {
+                                      return _vm.removeFromCart(product)
+                                    }
+                                  }
+                                },
+                                [_vm._v("X")]
+                              )
+                            ])
                           ])
                         }),
                         _vm._v(" "),
@@ -55938,6 +55962,10 @@ var cart = {
     addToCart: function addToCart(_ref, product) {
       var commit = _ref.commit;
       commit('ADD_TO_CART', product);
+    },
+    removeFromCart: function removeFromCart(_ref2, product) {
+      var commit = _ref2.commit;
+      commit('REMOVE_FROM_CART', product);
     }
   },
   mutations: {
@@ -55956,6 +55984,15 @@ var cart = {
       } else {
         record.quantity++;
       }
+    },
+    REMOVE_FROM_CART: function REMOVE_FROM_CART(state, product) {
+      var index = state.cart.findIndex(function (cart) {
+        return cart.id === product.id;
+      });
+
+      if (index >= 0) {
+        state.cart.splice(index, 1);
+      }
     }
   },
   getters: {
@@ -55963,11 +56000,11 @@ var cart = {
       return state.cart ? state.cart.length : 0;
     },
     cartProducts: function cartProducts(state) {
-      return state.cart.map(function (_ref2) {
-        var id = _ref2.id,
-            name = _ref2.name,
-            price = _ref2.price,
-            quantity = _ref2.quantity;
+      return state.cart.map(function (_ref3) {
+        var id = _ref3.id,
+            name = _ref3.name,
+            price = _ref3.price,
+            quantity = _ref3.quantity;
         return {
           id: id,
           name: name,

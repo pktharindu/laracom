@@ -8,6 +8,11 @@ export const cart = {
             commit
         }, product) {
             commit('ADD_TO_CART', product)
+        },
+        removeFromCart({
+            commit
+        }, product) {
+            commit('REMOVE_FROM_CART', product)
         }
     },
 
@@ -23,6 +28,12 @@ export const cart = {
                 })
             } else {
                 record.quantity++
+            }
+        },
+        REMOVE_FROM_CART(state, product) {
+            const index = state.cart.findIndex(cart => cart.id === product.id);
+            if (index >= 0) {
+                state.cart.splice(index, 1)
             }
         }
     },

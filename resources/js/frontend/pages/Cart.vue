@@ -28,6 +28,10 @@
                       <td>{{ product.name }}</td>
                       <td>Rs. {{ product.price }}</td>
                       <td>{{ product.quantity }}</td>
+                      <td><button
+                          @click="removeFromCart(product)"
+                          :data-id="product.id"
+                        >X</button></td>
                     </tr>
                     <tr>
                       <td><b>Total:</b></td>
@@ -60,6 +64,11 @@ export default {
       return this.products.reduce((total, p) => {
         return total + p.price * p.quantity;
       }, 0);
+    }
+  },
+  methods: {
+    removeFromCart(product) {
+      this.$store.dispatch("removeFromCart", product);
     }
   }
 };
